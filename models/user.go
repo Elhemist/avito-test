@@ -1,7 +1,7 @@
 package atest
 
 type User struct {
-	Id         int `json:"-"`
-	Balance    int `json:"balance"`
-	BlanceTemp int `json:"balanceTemp"`
+	Id         int `json:"userId"`
+	Balance    int `json:"balance" binding:"required"`
+	BlanceTemp int `json:"balanceTemp" binding:"required"`
 }

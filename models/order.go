@@ -1,9 +1,9 @@
 package atest
 
 type Order struct {
-	Id      int    `json:"-"`
-	Service int    `json:"serviceId"`
-	User    int    `json:"userId"`
+	Id      int    `json:"orderId"`
+	Service int    `json:"serviceId" binding:"required"`
+	User    int    `json:"userId" binding:"required"`
 	Date    string `json:"date"`
 	Status  bool   `json:"status"`
 }

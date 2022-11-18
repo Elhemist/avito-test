@@ -15,8 +15,8 @@ CREATE TABLE IF NOT EXISTS services
 CREATE TABLE IF NOT EXISTS orders
 (
     id          serial      primary key,
-    serviceId   INTEGER REFERENCES services(id),
-    userId      INTEGER REFERENCES users(id),
+    serviceId   INTEGER,
+    userId      INTEGER,
     date        timestamp   default CURRENT_TIMESTAMP,
     status      boolean     default false
 );
