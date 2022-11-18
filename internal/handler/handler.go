@@ -1,8 +1,16 @@
 package handler
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/Elhemist/avito-test/internal/service"
+	"github.com/gin-gonic/gin"
+)
 
 type Handler struct {
+	services *service.Service
+}
+
+func NewHandler(services *service.Service) *Handler {
+	return &Handler{services: services}
 }
 
 func (h *Handler) InitRoutes() *gin.Engine {
@@ -10,7 +18,7 @@ func (h *Handler) InitRoutes() *gin.Engine {
 
 	user := router.Group("/user")
 	{
-		user.POST("/accrual", h.UpdateBalance)
+		user.POST("/:id", h.UpdateBalance)
 		user.GET("/:id", h.CheckBalance)
 	}
 	product := router.Group("/order")
