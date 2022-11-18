@@ -13,6 +13,11 @@ func NewUserService(repo repository.User) *UserService {
 	return &UserService{repo: repo}
 }
 
-func (s *UserService) CheckUser(User atest.User) (int, error) {
-	return s.repo.CheckUser(User)
+func (s *UserService) CheckUser(user atest.User) (atest.User, error) {
+
+	return s.repo.CheckUser(user)
+}
+func (s *UserService) UpdateUser(user atest.User) (atest.User, error) {
+
+	return s.repo.UpdateUser(user)
 }

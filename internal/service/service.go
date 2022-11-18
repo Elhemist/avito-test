@@ -9,7 +9,8 @@ type Order interface {
 	CreateOrder(order atest.Order) (int, error)
 }
 type User interface {
-	CheckUser(user atest.User) (int, error)
+	CheckUser(user atest.User) (atest.User, error)
+	UpdateUser(user atest.User) (atest.User, error)
 }
 
 type Service struct {
@@ -21,5 +22,6 @@ func NewService(repos *repository.Repository) *Service {
 	return &Service{
 
 		Order: NewOrderService(repos.Order),
+		User:  NewUserService(repos.User),
 	}
 }

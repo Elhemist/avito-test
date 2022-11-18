@@ -11,25 +11,37 @@ const (
 	userCtx = "userId"
 )
 
-func (h *Handler) UpdateBalance(c *gin.Context) {
-
-}
-
 func (h *Handler) CheckBalance(c *gin.Context) {
 	var input atest.User
 	if err := c.BindJSON(&input); err != nil {
 		newErrorResponse(c, http.StatusBadRequest, err.Error())
 		return
 	}
-	id, err := h.services.User.CheckUser(input)
+	user, err := h.services.User.CheckUser(input)
 	if err != nil {
 		newErrorResponse(c, http.StatusInternalServerError, err.Error())
 		return
 	}
 	c.JSON(http.StatusOK, map[string]interface{}{
-		"id": id,
+		"userId":  user.Id,
+		"Balance": user.Balance,
+	})
+}
+
+func (h *Handler) UpdateBalance(c *gin.Context) {
+	var input atest.User
+	if err := c.BindJSON(&input); err != nil {
+		newErrorResponse(c, http.StatusBadRequest, err.Error())
+		return
+	}
+	user, err := h.services.User.UpdateUser(input)
+	if err != nil {
+		newErrorResponse(c, http.StatusInternalServerError, err.Error())
+		return
+	}
+	c.JSON(http.StatusOK, map[string]interface{}{
+		"userId":  user.Id,
+		"Balance": user.Balance,
 	})
 
-	// x := input.Id
-	// fmt.Printf(fmt.Sprint(x))
 }

@@ -16,12 +16,26 @@ func NewUserPostgres(db *sqlx.DB) *UserPostgres {
 
 }
 
-func (r *UserPostgres) CheckUser(User atest.User) (int, error) {
-	var id int
-	query := fmt.Sprintf("SELECT * FROM %s WHERE userId=$1 ", "users")
-	row := r.db.QueryRow(query, User.Id)
-	if err := row.Scan(&id); err != nil {
-		return 0, err
-	}
-	return id, nil
+func (r *UserPostgres) UpdateUser(user atest.User) (atest.User, error) {
+	var userRes atest.User
+
+	query := fmt.Sprintf("SELECT id, balance FROM %s WHERE id=$1 ", "users")
+	err := r.db.Get(&userRes, query, user.Id)
+	money := user.Balance + userRes.Balance
+
+	query = fmt.Sprintf("UPDATE %s SET balance =%d WHERE id=%d;", "users", money, user.Id)
+
+	err = r.db.Get(userRes, query)
+
+	query = fmt.Sprintf("SELECT id, balance FROM %s WHERE id=$1 ", "users")
+
+	err = r.db.Get(&userRes, query, user.Id)
+	return userRes, err
+}
+func (r *UserPostgres) CheckUser(user atest.User) (atest.User, error) {
+	var userRes atest.User
+
+	query := fmt.Sprintf("SELECT id, balance FROM %s WHERE id=$1 ", "users")
+	err := r.db.Get(&userRes, query, user.Id)
+	return userRes, err
 }

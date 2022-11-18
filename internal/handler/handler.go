@@ -18,8 +18,8 @@ func (h *Handler) InitRoutes() *gin.Engine {
 
 	user := router.Group("/user")
 	{
-		user.POST("/:id", h.UpdateBalance)
-		user.GET("/:id", h.CheckBalance)
+		user.GET("/", h.CheckBalance)
+		user.POST("/", h.UpdateBalance)
 	}
 	product := router.Group("/order")
 	{

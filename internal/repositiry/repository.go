@@ -6,10 +6,11 @@ import (
 )
 
 type Order interface {
-	CreateOrder(order atest.Order) (int, error)
+	CreateOrder(atest.Order) (int, error)
 }
 type User interface {
-	CheckUser(user atest.User) (int, error)
+	CheckUser(atest.User) (atest.User, error)
+	UpdateUser(atest.User) (atest.User, error)
 }
 
 type Repository struct {
@@ -20,5 +21,6 @@ type Repository struct {
 func NewRepository(db *sqlx.DB) *Repository {
 	return &Repository{
 		Order: NewOrderPostgres(db),
+		User:  NewUserPostgres(db),
 	}
 }
