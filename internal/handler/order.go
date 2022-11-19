@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"fmt"
 	"net/http"
 
 	atest "github.com/Elhemist/avito-test/models"
@@ -22,11 +23,21 @@ func (h *Handler) CreateOrder(c *gin.Context) {
 	c.JSON(http.StatusOK, map[string]interface{}{
 		"id": id,
 	})
-
-	// x := input.Id
-	// fmt.Printf(fmt.Sprint(x))
 }
 
 func (h *Handler) RevenueOrder(c *gin.Context) {
-
+	var input atest.Order
+	if err := c.BindJSON(&input); err != nil {
+		newErrorResponse(c, http.StatusBadRequest, err.Error())
+		return
+	}
+	fmt.Println("nya1")
+	id, err := h.services.Order.RevenueOrder(input)
+	if err != nil {
+		newErrorResponse(c, http.StatusInternalServerError, err.Error())
+		return
+	}
+	c.JSON(http.StatusOK, map[string]interface{}{
+		"id": id,
+	})
 }

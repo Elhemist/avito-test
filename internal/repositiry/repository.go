@@ -7,6 +7,7 @@ import (
 
 type Order interface {
 	CreateOrder(atest.Order) (int, error)
+	RevenueOrder(atest.Order) (int, error)
 }
 type User interface {
 	CheckUser(atest.User) (atest.User, error)

@@ -2,7 +2,7 @@ port: "8800"
 
 db:
     host:     "localhost"
-    port:     "57804"
+    port:     "64258"
     usename:  "postgres"
     password: "qwerty"
     dbname:   "postgres"
