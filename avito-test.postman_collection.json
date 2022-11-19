@@ -1,0 +1,140 @@
+{
+	"info": {
+		"_postman_id": "23ca3539-36ce-4e42-bc9b-c221684a9700",
+		"name": "Avito-test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24502174"
+	},
+	"item": [
+		{
+			"name": "Reserve order",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"orderId\": 13,\r\n    \"serviceId\": 14125125,\r\n    \"userId\": 10,\r\n    \"price\": 1000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}order/reserve",
+					"host": [
+						"{{url}}order"
+					],
+					"path": [
+						"reserve"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "serviceId",
+							"value": "3",
+							"disabled": true
+						},
+						{
+							"key": "userId",
+							"value": "4",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Revenue order",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"orderId\": 0,\r\n    \"serviceId\": 14125125,\r\n    \"userId\": 10,\r\n    \"price\": 1000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}order/revenue",
+					"host": [
+						"{{url}}order"
+					],
+					"path": [
+						"revenue"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add balance",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\": 3,\r\n    \"balance\": 400\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}user/",
+					"host": [
+						"{{url}}user"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check balance",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}user/",
+					"host": [
+						"{{url}}user"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://localhost:8800/"
+		}
+	]
+}
