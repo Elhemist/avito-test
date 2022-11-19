@@ -29,7 +29,7 @@ func (r *OrderPostgres) CreateOrder(order atest.Order) (int, error) {
 	var service atest.Service
 	query = fmt.Sprintf("SELECT id,name, price FROM %s WHERE id=$1 ", serviceTable)
 	err = r.db.Get(&service, query, order.Service)
-	if userRes.Balance-service.Price > 0 {
+	if userRes.Balance-service.Price >= 0 {
 		userRes.Balance = userRes.Balance - service.Price
 		res = res + service.Price
 		query = fmt.Sprintf("UPDATE %s SET balance =%d reserve =%d WHERE id=%d;", userTable, userRes.Balance, res, userRes.Id)
