@@ -3,6 +3,11 @@ package handler
 import (
 	"github.com/Elhemist/avito-test/internal/service"
 	"github.com/gin-gonic/gin"
+
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
+
+	_ "github.com/Elhemist/avito-test/docs"
 )
 
 type Handler struct {
@@ -16,6 +21,7 @@ func NewHandler(services *service.Service) *Handler {
 func (h *Handler) InitRoutes() *gin.Engine {
 	router := gin.New()
 
+	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	user := router.Group("/user")
 	{
 		user.GET("/", h.CheckBalance)

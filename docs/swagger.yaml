@@ -1,0 +1,191 @@
+basePath: /
+definitions:
+  atest.OrderResp:
+    properties:
+      orderId:
+        type: integer
+      prise:
+        type: integer
+      serviceId:
+        type: integer
+      userId:
+        type: integer
+    required:
+    - serviceId
+    - userId
+    type: object
+  atest.User:
+    properties:
+      balance:
+        type: integer
+      userId:
+        type: integer
+    type: object
+  handler.errorResponse:
+    properties:
+      message:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: Тестовое задание для стажировки.
+  title: Avito Test Api
+  version: "1.0"
+paths:
+  /order/reserve:
+    post:
+      consumes:
+      - application/json
+      description: Create order
+      operationId: create-order
+      parameters:
+      - description: order info
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/atest.OrderResp'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      summary: CreateOrder
+      tags:
+      - order
+  /order/revenue:
+    post:
+      consumes:
+      - application/json
+      description: Revenue order
+      operationId: revenue-order
+      parameters:
+      - description: revenue info
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/atest.OrderResp'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      summary: RevenueOrder
+      tags:
+      - order
+  /user/:
+    get:
+      consumes:
+      - application/json
+      description: Check user's balance
+      operationId: check-order
+      parameters:
+      - description: User info
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/atest.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/atest.User'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      summary: CheckBalance
+      tags:
+      - user
+    post:
+      consumes:
+      - application/json
+      description: Add some cash to user's balance
+      operationId: check-order
+      parameters:
+      - description: User info
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/atest.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/atest.User'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      summary: UpdateBalance
+      tags:
+      - user
+swagger: "2.0"

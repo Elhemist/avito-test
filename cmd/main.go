@@ -10,6 +10,13 @@ import (
 	"github.com/spf13/viper"
 )
 
+// @title Avito Test Api
+// @version 1.0
+// @description Тестовое задание для стажировки.
+
+// @host localhost:8080
+// @BasePath /
+
 func main() {
 	logrus.SetFormatter(new(logrus.JSONFormatter))
 
