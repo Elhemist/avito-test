@@ -34,6 +34,8 @@ func main() {
 	service := service.NewService(repos)
 	handlers := handler.NewHandler(service)
 
+	repository.InitTables(db)
+	repository.FillTables(db)
 	srv := new(atest.Server)
 	if err := srv.Start(viper.GetString("port"), handlers.InitRoutes()); err != nil {
 		logrus.Fatalf("Running error: %s", err.Error())
