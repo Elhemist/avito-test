@@ -6,12 +6,14 @@ docker-compose up --build
 ```
 # API
 Данный микросервис имеет четыре метода. Примеры запросов можно найти в файле avito-test.postman_collection.json
+## Описание методов в swaggert
+### http://localhost:8080/swagger/index.html
 ## Метод получения баланса пользователя
 ### Post "/user/"
 Данный метод принимает id пользователя и возвращает баланс пользователя.
 ### Пример
 ```bash
-curl --location --request GET 'http://localhost:8800/user/' \
+curl --location --request GET 'http://localhost:8080/user/' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "userId": 10
@@ -22,7 +24,7 @@ curl --location --request GET 'http://localhost:8800/user/' \
 Данный метод принимает id пользователя и сумму необходиммую для начисления на баланс.
 ### Пример
 ```bash
-curl --location --request POST 'http://localhost:8800/user/' \
+curl --location --request POST 'http://localhost:8080/user/' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "userId": 3,
@@ -48,7 +50,7 @@ curl --location --request POST '127.0.0.1:8080/order/reserve' \
 ### Post "/order/revenue"
 ### Пример
 ```bash
-curl --location --request POST 'http://localhost:8800/order/revenue' \
+curl --location --request POST 'http://localhost:8080/order/revenue' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "orderId": 0,
